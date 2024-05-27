@@ -1,0 +1,70 @@
+{
+	"name": "Product_CSV",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage2",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "product.csv",
+				"folderPath": "LK_Data",
+				"container": "data"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "id",
+				"type": "String"
+			},
+			{
+				"name": "brand_name",
+				"type": "String"
+			},
+			{
+				"name": "size",
+				"type": "String"
+			},
+			{
+				"name": "model_name",
+				"type": "String"
+			},
+			{
+				"name": "lenskart_price",
+				"type": "String"
+			},
+			{
+				"name": "market_price",
+				"type": "String"
+			},
+			{
+				"name": "offerName",
+				"type": "String"
+			},
+			{
+				"name": "classification",
+				"type": "String"
+			},
+			{
+				"name": "wishlistCount",
+				"type": "String"
+			},
+			{
+				"name": "purchaseCount",
+				"type": "String"
+			},
+			{
+				"name": "avgRating",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

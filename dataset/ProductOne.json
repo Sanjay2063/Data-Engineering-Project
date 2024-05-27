@@ -1,0 +1,55 @@
+{
+	"name": "ProductOne",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabase1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "id",
+				"type": "varchar"
+			},
+			{
+				"name": "brand_name",
+				"type": "varchar"
+			},
+			{
+				"name": "size",
+				"type": "varchar"
+			},
+			{
+				"name": "model_name",
+				"type": "varchar"
+			},
+			{
+				"name": "prices",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "classification",
+				"type": "varchar"
+			},
+			{
+				"name": "wishlistCount",
+				"type": "varchar"
+			},
+			{
+				"name": "purchaseCount",
+				"type": "varchar"
+			},
+			{
+				"name": "avgRating",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "product1"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,63 @@
+{
+	"name": "ProductDB",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabase1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "id",
+				"type": "varchar"
+			},
+			{
+				"name": "brand_name",
+				"type": "varchar"
+			},
+			{
+				"name": "size",
+				"type": "varchar"
+			},
+			{
+				"name": "model_name",
+				"type": "varchar"
+			},
+			{
+				"name": "lenskart_price",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "market_price",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "classification",
+				"type": "varchar"
+			},
+			{
+				"name": "wishlistCount",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "purchaseCount",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "avgRating",
+				"type": "float",
+				"precision": 15
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "product"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

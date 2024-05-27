@@ -1,0 +1,75 @@
+{
+	"name": "AzureSqlTableProda",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabaseAish",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "id",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "brand_name",
+				"type": "varchar"
+			},
+			{
+				"name": "size",
+				"type": "varchar"
+			},
+			{
+				"name": "model_name",
+				"type": "varchar"
+			},
+			{
+				"name": "price",
+				"type": "varchar"
+			},
+			{
+				"name": "lenskart_price",
+				"type": "decimal",
+				"precision": 10,
+				"scale": 2
+			},
+			{
+				"name": "market_price",
+				"type": "decimal",
+				"precision": 10,
+				"scale": 2
+			},
+			{
+				"name": "offerName",
+				"type": "varchar"
+			},
+			{
+				"name": "classification",
+				"type": "varchar"
+			},
+			{
+				"name": "wishlistCount",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "purchaseCount",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "avgRating",
+				"type": "decimal",
+				"precision": 3,
+				"scale": 2
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "ProductA"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

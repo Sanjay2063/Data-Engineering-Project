@@ -1,0 +1,66 @@
+{
+	"name": "AzureSqlTable3",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabase1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "id",
+				"type": "varchar"
+			},
+			{
+				"name": "lk_store_id",
+				"type": "varchar"
+			},
+			{
+				"name": "alt_store_name_catch",
+				"type": "varchar"
+			},
+			{
+				"name": "store_type_labels",
+				"type": "varchar"
+			},
+			{
+				"name": "address_full",
+				"type": "varchar"
+			},
+			{
+				"name": "address_locality",
+				"type": "varchar"
+			},
+			{
+				"name": "address_city",
+				"type": "varchar"
+			},
+			{
+				"name": "address_state",
+				"type": "varchar"
+			},
+			{
+				"name": "store_email",
+				"type": "varchar"
+			},
+			{
+				"name": "store_virtual_number",
+				"type": "varchar"
+			},
+			{
+				"name": "store_phone",
+				"type": "varchar"
+			},
+			{
+				"name": "ratingAndReviewCount",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "store"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

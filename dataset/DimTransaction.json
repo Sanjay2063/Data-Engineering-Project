@@ -1,0 +1,26 @@
+{
+	"name": "DimTransaction",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabase1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "transaction_id",
+				"type": "varchar"
+			},
+			{
+				"name": "payment_method",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "transactions_"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

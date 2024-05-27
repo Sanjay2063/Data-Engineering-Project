@@ -1,0 +1,663 @@
+{
+	"name": "CSV to DB",
+	"properties": {
+		"activities": [
+			{
+				"name": "Product",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Store",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "AzureSqlSink",
+						"writeBehavior": "insert",
+						"sqlWriterUseTableLock": false
+					},
+					"enableStaging": false,
+					"enableSkipIncompatibleRow": true,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "id",
+									"type": "String"
+								},
+								"sink": {
+									"name": "id",
+									"type": "varchar",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "brand_name",
+									"type": "String"
+								},
+								"sink": {
+									"name": "brand_name",
+									"type": "varchar",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "size",
+									"type": "String"
+								},
+								"sink": {
+									"name": "size",
+									"type": "varchar",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "model_name",
+									"type": "String"
+								},
+								"sink": {
+									"name": "model_name",
+									"type": "varchar",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "prices",
+									"type": "String"
+								},
+								"sink": {
+									"name": "prices"
+								}
+							},
+							{
+								"source": {
+									"name": "wishlistCount",
+									"type": "String"
+								},
+								"sink": {
+									"name": "wishlistCount",
+									"type": "int",
+									"physicalType": "int",
+									"precision": 10
+								}
+							},
+							{
+								"source": {
+									"name": "classification",
+									"type": "String"
+								},
+								"sink": {
+									"name": "classification",
+									"type": "varchar",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "purchaseCount",
+									"type": "String"
+								},
+								"sink": {
+									"name": "purchaseCount",
+									"type": "int",
+									"physicalType": "int",
+									"precision": 10
+								}
+							},
+							{
+								"source": {
+									"name": "avgRating",
+									"type": "String"
+								},
+								"sink": {
+									"name": "avgRating",
+									"type": "float",
+									"physicalType": "float",
+									"precision": 15
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "FullProdctTable",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "ProductDB",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Transaction",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "AzureSqlSink",
+						"writeBehavior": "insert",
+						"sqlWriterUseTableLock": false
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "order_id",
+									"type": "String"
+								},
+								"sink": {
+									"name": "order_id",
+									"type": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "transaction_id",
+									"type": "String"
+								},
+								"sink": {
+									"name": "transaction_id",
+									"type": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "customer_id",
+									"type": "String"
+								},
+								"sink": {
+									"name": "customer_id",
+									"type": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "product_id",
+									"type": "String"
+								},
+								"sink": {
+									"name": "product_id",
+									"type": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "store_id",
+									"type": "String"
+								},
+								"sink": {
+									"name": "store_id",
+									"type": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "quantity",
+									"type": "String"
+								},
+								"sink": {
+									"name": "quantity",
+									"type": "int",
+									"precision": 10
+								}
+							},
+							{
+								"source": {
+									"name": "order_date",
+									"type": "String"
+								},
+								"sink": {
+									"name": "order_date",
+									"type": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "payment_method",
+									"type": "String"
+								},
+								"sink": {
+									"name": "payment_method",
+									"type": "varchar"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "Transaction_CSV",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "TransactionDB",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Customer",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Transaction",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "AzureSqlSink",
+						"writeBehavior": "insert",
+						"sqlWriterUseTableLock": false
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "customer_id",
+									"type": "String"
+								},
+								"sink": {
+									"name": "customer_id",
+									"type": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "first name",
+									"type": "String"
+								},
+								"sink": {
+									"name": "first name",
+									"type": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "last name",
+									"type": "String"
+								},
+								"sink": {
+									"name": "last name",
+									"type": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "email",
+									"type": "String"
+								},
+								"sink": {
+									"name": "email",
+									"type": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "DOB",
+									"type": "String"
+								},
+								"sink": {
+									"name": "DOB",
+									"type": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "address",
+									"type": "String"
+								},
+								"sink": {
+									"name": "address",
+									"type": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "city",
+									"type": "String"
+								},
+								"sink": {
+									"name": "city",
+									"type": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "region",
+									"type": "String"
+								},
+								"sink": {
+									"name": "region",
+									"type": "varchar"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "Customer_CSV",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "CustomerDB",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Store",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Customer",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "AzureSqlSink",
+						"writeBehavior": "insert",
+						"sqlWriterUseTableLock": false
+					},
+					"enableStaging": false,
+					"enableSkipIncompatibleRow": true,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "id",
+									"type": "String"
+								},
+								"sink": {
+									"name": "id",
+									"type": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "lk_store_id",
+									"type": "String"
+								},
+								"sink": {
+									"name": "lk_store_id",
+									"type": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "alt_store_name_catch",
+									"type": "String"
+								},
+								"sink": {
+									"name": "alt_store_name_catch",
+									"type": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "store_type_labels",
+									"type": "String"
+								},
+								"sink": {
+									"name": "store_type_labels",
+									"type": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "address_full",
+									"type": "String"
+								},
+								"sink": {
+									"name": "address_full",
+									"type": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "address_locality",
+									"type": "String"
+								},
+								"sink": {
+									"name": "address_locality",
+									"type": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "address_city",
+									"type": "String"
+								},
+								"sink": {
+									"name": "address_city",
+									"type": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "address_state",
+									"type": "String"
+								},
+								"sink": {
+									"name": "address_state",
+									"type": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "store_email",
+									"type": "String"
+								},
+								"sink": {
+									"name": "store_email",
+									"type": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "store_virtual_number",
+									"type": "String"
+								},
+								"sink": {
+									"name": "store_virtual_number",
+									"type": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "store_phone",
+									"type": "String"
+								},
+								"sink": {
+									"name": "store_phone",
+									"type": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ratingAndReviewCount",
+									"type": "String"
+								},
+								"sink": {
+									"name": "ratingAndReviewCount",
+									"type": "varchar"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "Store_CSV",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "StoreDB",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Script1",
+				"type": "Script",
+				"dependsOn": [
+					{
+						"activity": "Product",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"linkedServiceName": {
+					"referenceName": "AzureSqlDatabase1",
+					"type": "LinkedServiceReference"
+				},
+				"typeProperties": {
+					"scripts": [
+						{
+							"type": "Query",
+							"text": "UPDATE product\nSET \n    market_price = JSON_VALUE(REPLACE(prices, '''', '\"'), '$[0].price'),\n    lenskart_price = JSON_VALUE(REPLACE(prices, '''', '\"'), '$[1].price');"
+						}
+					],
+					"scriptBlockExecutionTimeout": "02:00:00"
+				}
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2024-05-27T16:05:13Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

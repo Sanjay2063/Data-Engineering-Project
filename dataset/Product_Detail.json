@@ -1,0 +1,62 @@
+{
+	"name": "Product_Detail",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage2",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "Product_Detail.csv",
+				"folderPath": "LK_Data",
+				"container": "data"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "id",
+				"type": "String"
+			},
+			{
+				"name": "brand_name",
+				"type": "String"
+			},
+			{
+				"name": "size",
+				"type": "String"
+			},
+			{
+				"name": "model_name",
+				"type": "String"
+			},
+			{
+				"name": "prices",
+				"type": "String"
+			},
+			{
+				"name": "classification",
+				"type": "String"
+			},
+			{
+				"name": "wishlistCount",
+				"type": "String"
+			},
+			{
+				"name": "purchaseCount",
+				"type": "String"
+			},
+			{
+				"name": "avgRating",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

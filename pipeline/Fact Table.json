@@ -1,0 +1,57 @@
+{
+	"name": "Fact Table",
+	"properties": {
+		"activities": [
+			{
+				"name": "Fact Table",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderQuery": "SELECT\n    t.order_id,\n    t.transaction_id AS transaction_id,\n    t.customer_id AS customer_id,\n    t.product_id AS product_id,\n    t.store_id AS store_id,\n    t.quantity AS quantity,\n    t.order_date AS order_date,\n    t.quantity * p.Lenskart_price AS revenue\nFROM\n    transactions t\nJOIN\n    product p ON t.product_id = p.id;",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "AzureSqlSink",
+						"writeBehavior": "insert",
+						"sqlWriterUseTableLock": false
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "TransactionDB",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "FactTableDB",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2024-05-27T08:43:08Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

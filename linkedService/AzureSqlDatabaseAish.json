@@ -1,0 +1,12 @@
+{
+	"name": "AzureSqlDatabaseAish",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "AzureSqlDatabase",
+		"typeProperties": {
+			"connectionString": "integrated security=False;encrypt=True;connection timeout=30;data source=lenskart-data.database.windows.net;initial catalog=LK;user id=sanjay",
+			"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIkRBVEFGQUNUT1JZQDY2MDUxNzYwLTM1MEItNENGQi04MzE1LTNBQTA3M0YzMEU2NF9iNGI0YjU3MC05MTVhLTQ3NzAtOTI4Yy1iNTk2ZjllYzEwYzkiDQp9"
+		}
+	}
+}
