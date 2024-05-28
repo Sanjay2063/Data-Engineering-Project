@@ -1,0 +1,2575 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "adfsureshkumar"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/Store_CSV')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage2",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "store.csv",
+						"folderPath": "LK_Data",
+						"container": "data"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "id",
+						"type": "String"
+					},
+					{
+						"name": "flag",
+						"type": "String"
+					},
+					{
+						"name": "lk_store_id",
+						"type": "String"
+					},
+					{
+						"name": "store",
+						"type": "String"
+					},
+					{
+						"name": "si_store_id",
+						"type": "String"
+					},
+					{
+						"name": "alt_store_name_catch",
+						"type": "String"
+					},
+					{
+						"name": "status",
+						"type": "String"
+					},
+					{
+						"name": "store_open_status",
+						"type": "String"
+					},
+					{
+						"name": "store_pickup_available",
+						"type": "String"
+					},
+					{
+						"name": "brand_lk_jj",
+						"type": "String"
+					},
+					{
+						"name": "store_type_labels",
+						"type": "String"
+					},
+					{
+						"name": "location_type_labels",
+						"type": "String"
+					},
+					{
+						"name": "address_full",
+						"type": "String"
+					},
+					{
+						"name": "address_line_1",
+						"type": "String"
+					},
+					{
+						"name": "address_line_2",
+						"type": "String"
+					},
+					{
+						"name": "address_locality",
+						"type": "String"
+					},
+					{
+						"name": "address_landmark",
+						"type": "String"
+					},
+					{
+						"name": "address_city",
+						"type": "String"
+					},
+					{
+						"name": "address_state",
+						"type": "String"
+					},
+					{
+						"name": "address_pin_code",
+						"type": "String"
+					},
+					{
+						"name": "address_country",
+						"type": "String"
+					},
+					{
+						"name": "latitude",
+						"type": "String"
+					},
+					{
+						"name": "longitude",
+						"type": "String"
+					},
+					{
+						"name": "wp_db_id",
+						"type": "String"
+					},
+					{
+						"name": "place_id",
+						"type": "String"
+					},
+					{
+						"name": "google_cid_g",
+						"type": "String"
+					},
+					{
+						"name": "flaberry_place_id_ur",
+						"type": "String"
+					},
+					{
+						"name": "fb_page_id",
+						"type": "String"
+					},
+					{
+						"name": "appointment_url",
+						"type": "String"
+					},
+					{
+						"name": "store_email",
+						"type": "String"
+					},
+					{
+						"name": "store_virtual_number",
+						"type": "String"
+					},
+					{
+						"name": "store_phone",
+						"type": "String"
+					},
+					{
+						"name": "business_hours_openi",
+						"type": "String"
+					},
+					{
+						"name": "business_hours_closi",
+						"type": "String"
+					},
+					{
+						"name": "store_manager_name",
+						"type": "String"
+					},
+					{
+						"name": "store_manager_mobile",
+						"type": "String"
+					},
+					{
+						"name": "payment_types",
+						"type": "String"
+					},
+					{
+						"name": "parking_options",
+						"type": "String"
+					},
+					{
+						"name": "store_opening_date",
+						"type": "String"
+					},
+					{
+						"name": "store_size",
+						"type": "String"
+					},
+					{
+						"name": "single_interface_sto",
+						"type": "String"
+					},
+					{
+						"name": "slug",
+						"type": "String"
+					},
+					{
+						"name": "lenskart_store_page_",
+						"type": "String"
+					},
+					{
+						"name": "google_maps_url",
+						"type": "String"
+					},
+					{
+						"name": "google_search_url",
+						"type": "String"
+					},
+					{
+						"name": "google_review_url",
+						"type": "String"
+					},
+					{
+						"name": "bing",
+						"type": "String"
+					},
+					{
+						"name": "foursquare_url",
+						"type": "String"
+					},
+					{
+						"name": "yalwa_url",
+						"type": "String"
+					},
+					{
+						"name": "dealsnyou_url",
+						"type": "String"
+					},
+					{
+						"name": "magicpin_url",
+						"type": "String"
+					},
+					{
+						"name": "review_short_url",
+						"type": "String"
+					},
+					{
+						"name": "map_short_url",
+						"type": "String"
+					},
+					{
+						"name": "from_the_brand",
+						"type": "String"
+					},
+					{
+						"name": "labels",
+						"type": "String"
+					},
+					{
+						"name": "busy_hours",
+						"type": "String"
+					},
+					{
+						"name": "slightly_hours",
+						"type": "String"
+					},
+					{
+						"name": "serviceOptions",
+						"type": "String"
+					},
+					{
+						"name": "store_front_image",
+						"type": "String"
+					},
+					{
+						"name": "is_union_territory",
+						"type": "String"
+					},
+					{
+						"name": "created_at",
+						"type": "String"
+					},
+					{
+						"name": "updated_at",
+						"type": "String"
+					},
+					{
+						"name": "running_status",
+						"type": "String"
+					},
+					{
+						"name": "ratingAndReviewCount",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Store_DB')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureSqlDatabase1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "id",
+						"type": "varchar"
+					},
+					{
+						"name": "lk_store_id",
+						"type": "varchar"
+					},
+					{
+						"name": "alt_store_name_catch",
+						"type": "varchar"
+					},
+					{
+						"name": "store_type_labels",
+						"type": "varchar"
+					},
+					{
+						"name": "address_full",
+						"type": "varchar"
+					},
+					{
+						"name": "address_locality",
+						"type": "varchar"
+					},
+					{
+						"name": "address_city",
+						"type": "varchar"
+					},
+					{
+						"name": "address_state",
+						"type": "varchar"
+					},
+					{
+						"name": "store_email",
+						"type": "varchar"
+					},
+					{
+						"name": "store_virtual_number",
+						"type": "varchar"
+					},
+					{
+						"name": "store_phone",
+						"type": "varchar"
+					},
+					{
+						"name": "ratingAndReviewCount",
+						"type": "varchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "store"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/TransactionDB')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureSqlDatabase1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "order_id",
+						"type": "varchar"
+					},
+					{
+						"name": "transaction_id",
+						"type": "varchar"
+					},
+					{
+						"name": "customer_id",
+						"type": "varchar"
+					},
+					{
+						"name": "product_id",
+						"type": "varchar"
+					},
+					{
+						"name": "store_id",
+						"type": "varchar"
+					},
+					{
+						"name": "quantity",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "order_date",
+						"type": "varchar"
+					},
+					{
+						"name": "payment_method",
+						"type": "varchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "transactions"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Transaction_CSV')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage2",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "transaction.csv",
+						"folderPath": "LK_Data",
+						"container": "data"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "order_id",
+						"type": "String"
+					},
+					{
+						"name": "transaction_id",
+						"type": "String"
+					},
+					{
+						"name": "customer_id",
+						"type": "String"
+					},
+					{
+						"name": "product_id",
+						"type": "String"
+					},
+					{
+						"name": "store_id",
+						"type": "String"
+					},
+					{
+						"name": "quantity",
+						"type": "String"
+					},
+					{
+						"name": "order_date",
+						"type": "String"
+					},
+					{
+						"name": "payment_method",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Transaction_Table')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureSqlDatabase1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "order_id",
+						"type": "varchar"
+					},
+					{
+						"name": "transaction_id",
+						"type": "varchar"
+					},
+					{
+						"name": "customer_id",
+						"type": "varchar"
+					},
+					{
+						"name": "product_id",
+						"type": "varchar"
+					},
+					{
+						"name": "store_id",
+						"type": "varchar"
+					},
+					{
+						"name": "quantity",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "order_date",
+						"type": "varchar"
+					},
+					{
+						"name": "payment_method",
+						"type": "varchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "transactions"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/customer')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage2",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "customers.csv",
+						"folderPath": "LK_Data",
+						"container": "data"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "customer_id",
+						"type": "String"
+					},
+					{
+						"name": "first name",
+						"type": "String"
+					},
+					{
+						"name": "last name",
+						"type": "String"
+					},
+					{
+						"name": "email",
+						"type": "String"
+					},
+					{
+						"name": "DOB",
+						"type": "String"
+					},
+					{
+						"name": "address",
+						"type": "String"
+					},
+					{
+						"name": "city",
+						"type": "String"
+					},
+					{
+						"name": "region",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/customer1')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureSqlDatabase1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "customer_id",
+						"type": "varchar"
+					},
+					{
+						"name": "first name",
+						"type": "varchar"
+					},
+					{
+						"name": "last name",
+						"type": "varchar"
+					},
+					{
+						"name": "email",
+						"type": "varchar"
+					},
+					{
+						"name": "DOB",
+						"type": "varchar"
+					},
+					{
+						"name": "address",
+						"type": "varchar"
+					},
+					{
+						"name": "city",
+						"type": "varchar"
+					},
+					{
+						"name": "region",
+						"type": "varchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "customer1"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/fact1_DB')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureSqlDatabase1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "order_id",
+						"type": "varchar"
+					},
+					{
+						"name": "transaction_id",
+						"type": "varchar"
+					},
+					{
+						"name": "customer_id",
+						"type": "varchar"
+					},
+					{
+						"name": "product_id",
+						"type": "varchar"
+					},
+					{
+						"name": "store_id",
+						"type": "varchar"
+					},
+					{
+						"name": "quantity",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "order_date",
+						"type": "varchar"
+					},
+					{
+						"name": "brand_name",
+						"type": "varchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "fact1"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/fullProduct')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorageAish",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "store.csv",
+						"container": "source"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "id",
+						"type": "String"
+					},
+					{
+						"name": "flag",
+						"type": "String"
+					},
+					{
+						"name": "lk_store_id",
+						"type": "String"
+					},
+					{
+						"name": "store",
+						"type": "String"
+					},
+					{
+						"name": "si_store_id",
+						"type": "String"
+					},
+					{
+						"name": "alt_store_name_catch",
+						"type": "String"
+					},
+					{
+						"name": "status",
+						"type": "String"
+					},
+					{
+						"name": "store_open_status",
+						"type": "String"
+					},
+					{
+						"name": "store_pickup_available",
+						"type": "String"
+					},
+					{
+						"name": "brand_lk_jj",
+						"type": "String"
+					},
+					{
+						"name": "store_type_labels",
+						"type": "String"
+					},
+					{
+						"name": "location_type_labels",
+						"type": "String"
+					},
+					{
+						"name": "address_full",
+						"type": "String"
+					},
+					{
+						"name": "address_line_1",
+						"type": "String"
+					},
+					{
+						"name": "address_line_2",
+						"type": "String"
+					},
+					{
+						"name": "address_locality",
+						"type": "String"
+					},
+					{
+						"name": "address_landmark",
+						"type": "String"
+					},
+					{
+						"name": "address_city",
+						"type": "String"
+					},
+					{
+						"name": "address_state",
+						"type": "String"
+					},
+					{
+						"name": "address_pin_code",
+						"type": "String"
+					},
+					{
+						"name": "address_country",
+						"type": "String"
+					},
+					{
+						"name": "latitude",
+						"type": "String"
+					},
+					{
+						"name": "longitude",
+						"type": "String"
+					},
+					{
+						"name": "wp_db_id",
+						"type": "String"
+					},
+					{
+						"name": "place_id",
+						"type": "String"
+					},
+					{
+						"name": "google_cid_g",
+						"type": "String"
+					},
+					{
+						"name": "flaberry_place_id_ur",
+						"type": "String"
+					},
+					{
+						"name": "fb_page_id",
+						"type": "String"
+					},
+					{
+						"name": "appointment_url",
+						"type": "String"
+					},
+					{
+						"name": "store_email",
+						"type": "String"
+					},
+					{
+						"name": "store_virtual_number",
+						"type": "String"
+					},
+					{
+						"name": "store_phone",
+						"type": "String"
+					},
+					{
+						"name": "business_hours_openi",
+						"type": "String"
+					},
+					{
+						"name": "business_hours_closi",
+						"type": "String"
+					},
+					{
+						"name": "store_manager_name",
+						"type": "String"
+					},
+					{
+						"name": "store_manager_mobile",
+						"type": "String"
+					},
+					{
+						"name": "payment_types",
+						"type": "String"
+					},
+					{
+						"name": "parking_options",
+						"type": "String"
+					},
+					{
+						"name": "store_opening_date",
+						"type": "String"
+					},
+					{
+						"name": "store_size",
+						"type": "String"
+					},
+					{
+						"name": "single_interface_sto",
+						"type": "String"
+					},
+					{
+						"name": "slug",
+						"type": "String"
+					},
+					{
+						"name": "lenskart_store_page_",
+						"type": "String"
+					},
+					{
+						"name": "google_maps_url",
+						"type": "String"
+					},
+					{
+						"name": "google_search_url",
+						"type": "String"
+					},
+					{
+						"name": "google_review_url",
+						"type": "String"
+					},
+					{
+						"name": "bing",
+						"type": "String"
+					},
+					{
+						"name": "foursquare_url",
+						"type": "String"
+					},
+					{
+						"name": "yalwa_url",
+						"type": "String"
+					},
+					{
+						"name": "dealsnyou_url",
+						"type": "String"
+					},
+					{
+						"name": "magicpin_url",
+						"type": "String"
+					},
+					{
+						"name": "review_short_url",
+						"type": "String"
+					},
+					{
+						"name": "map_short_url",
+						"type": "String"
+					},
+					{
+						"name": "from_the_brand",
+						"type": "String"
+					},
+					{
+						"name": "labels",
+						"type": "String"
+					},
+					{
+						"name": "busy_hours",
+						"type": "String"
+					},
+					{
+						"name": "slightly_hours",
+						"type": "String"
+					},
+					{
+						"name": "serviceOptions",
+						"type": "String"
+					},
+					{
+						"name": "store_front_image",
+						"type": "String"
+					},
+					{
+						"name": "is_union_territory",
+						"type": "String"
+					},
+					{
+						"name": "created_at",
+						"type": "String"
+					},
+					{
+						"name": "updated_at",
+						"type": "String"
+					},
+					{
+						"name": "running_status",
+						"type": "String"
+					},
+					{
+						"name": "ratingAndReviewCount",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/proda')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorageAish",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "product.csv",
+						"container": "source"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "id",
+						"type": "String"
+					},
+					{
+						"name": "image_url",
+						"type": "String"
+					},
+					{
+						"name": "image_url_suffix",
+						"type": "String"
+					},
+					{
+						"name": "imageUrls",
+						"type": "String"
+					},
+					{
+						"name": "product_url",
+						"type": "String"
+					},
+					{
+						"name": "color",
+						"type": "String"
+					},
+					{
+						"name": "size",
+						"type": "String"
+					},
+					{
+						"name": "width",
+						"type": "String"
+					},
+					{
+						"name": "brand_name",
+						"type": "String"
+					},
+					{
+						"name": "brand_name_en",
+						"type": "String"
+					},
+					{
+						"name": "brand_logo",
+						"type": "String"
+					},
+					{
+						"name": "model_name",
+						"type": "String"
+					},
+					{
+						"name": "prices",
+						"type": "String"
+					},
+					{
+						"name": "is_tbyb",
+						"type": "String"
+					},
+					{
+						"name": "tags",
+						"type": "String"
+					},
+					{
+						"name": "color_options",
+						"type": "String"
+					},
+					{
+						"name": "totalColorAvailable",
+						"type": "String"
+					},
+					{
+						"name": "is_ditto",
+						"type": "String"
+					},
+					{
+						"name": "sku",
+						"type": "String"
+					},
+					{
+						"name": "hover_image_url",
+						"type": "String"
+					},
+					{
+						"name": "classification",
+						"type": "String"
+					},
+					{
+						"name": "specifications",
+						"type": "String"
+					},
+					{
+						"name": "wishlistCount",
+						"type": "String"
+					},
+					{
+						"name": "purchaseCount",
+						"type": "String"
+					},
+					{
+						"name": "avgRating",
+						"type": "String"
+					},
+					{
+						"name": "totalNoOfRatings",
+						"type": "String"
+					},
+					{
+						"name": "hashtagList",
+						"type": "String"
+					},
+					{
+						"name": "offerName",
+						"type": "String"
+					},
+					{
+						"name": "cmsLinkAndroid",
+						"type": "String"
+					},
+					{
+						"name": "cmsLinkIos",
+						"type": "String"
+					},
+					{
+						"name": "arModelAndroidUrl",
+						"type": "String"
+					},
+					{
+						"name": "arModelIOSUrl",
+						"type": "String"
+					},
+					{
+						"name": "arModelMsiteAndDesktopUrl",
+						"type": "String"
+					},
+					{
+						"name": "arModelOriginalUrl",
+						"type": "String"
+					},
+					{
+						"name": "qty",
+						"type": "String"
+					},
+					{
+						"name": "frameColorImage",
+						"type": "String"
+					},
+					{
+						"name": "subCollection",
+						"type": "String"
+					},
+					{
+						"name": "subCollectionId",
+						"type": "String"
+					},
+					{
+						"name": "relatedItems",
+						"type": "String"
+					},
+					{
+						"name": "isCygnusEnabled",
+						"type": "String"
+					},
+					{
+						"name": "isCashbackApplicable",
+						"type": "String"
+					},
+					{
+						"name": "searchProductName",
+						"type": "String"
+					},
+					{
+						"name": "prescriptionType",
+						"type": "String"
+					},
+					{
+						"name": "arProductImageUrl",
+						"type": "String"
+					},
+					{
+						"name": "occasion",
+						"type": "String"
+					},
+					{
+						"name": "suited_for",
+						"type": "String"
+					},
+					{
+						"name": "inclusiveText",
+						"type": "String"
+					},
+					{
+						"name": "clUsage",
+						"type": "String"
+					},
+					{
+						"name": "tryOnImageUrl",
+						"type": "String"
+					},
+					{
+						"name": "offer_image",
+						"type": "String"
+					},
+					{
+						"name": "isCombo",
+						"type": "String"
+					},
+					{
+						"name": "comboImageUrl",
+						"type": "String"
+					},
+					{
+						"name": "comboDescription",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/product')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage2",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "product_details.csv",
+						"folderPath": "LK_Data",
+						"container": "data"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "id",
+						"type": "String"
+					},
+					{
+						"name": "brand_name",
+						"type": "String"
+					},
+					{
+						"name": "size",
+						"type": "String"
+					},
+					{
+						"name": "model_name",
+						"type": "String"
+					},
+					{
+						"name": "prices",
+						"type": "String"
+					},
+					{
+						"name": "classification",
+						"type": "String"
+					},
+					{
+						"name": "wishlistCount",
+						"type": "String"
+					},
+					{
+						"name": "purchaseCount",
+						"type": "String"
+					},
+					{
+						"name": "avgRating",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/store')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage2",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "store.csv",
+						"folderPath": "LK_Data",
+						"container": "data"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "id",
+						"type": "String"
+					},
+					{
+						"name": "flag",
+						"type": "String"
+					},
+					{
+						"name": "lk_store_id",
+						"type": "String"
+					},
+					{
+						"name": "store",
+						"type": "String"
+					},
+					{
+						"name": "si_store_id",
+						"type": "String"
+					},
+					{
+						"name": "alt_store_name_catch",
+						"type": "String"
+					},
+					{
+						"name": "status",
+						"type": "String"
+					},
+					{
+						"name": "store_open_status",
+						"type": "String"
+					},
+					{
+						"name": "store_pickup_available",
+						"type": "String"
+					},
+					{
+						"name": "brand_lk_jj",
+						"type": "String"
+					},
+					{
+						"name": "store_type_labels",
+						"type": "String"
+					},
+					{
+						"name": "location_type_labels",
+						"type": "String"
+					},
+					{
+						"name": "address_full",
+						"type": "String"
+					},
+					{
+						"name": "address_line_1",
+						"type": "String"
+					},
+					{
+						"name": "address_line_2",
+						"type": "String"
+					},
+					{
+						"name": "address_locality",
+						"type": "String"
+					},
+					{
+						"name": "address_landmark",
+						"type": "String"
+					},
+					{
+						"name": "address_city",
+						"type": "String"
+					},
+					{
+						"name": "address_state",
+						"type": "String"
+					},
+					{
+						"name": "address_pin_code",
+						"type": "String"
+					},
+					{
+						"name": "address_country",
+						"type": "String"
+					},
+					{
+						"name": "latitude",
+						"type": "String"
+					},
+					{
+						"name": "longitude",
+						"type": "String"
+					},
+					{
+						"name": "wp_db_id",
+						"type": "String"
+					},
+					{
+						"name": "place_id",
+						"type": "String"
+					},
+					{
+						"name": "google_cid_g",
+						"type": "String"
+					},
+					{
+						"name": "flaberry_place_id_ur",
+						"type": "String"
+					},
+					{
+						"name": "fb_page_id",
+						"type": "String"
+					},
+					{
+						"name": "appointment_url",
+						"type": "String"
+					},
+					{
+						"name": "store_email",
+						"type": "String"
+					},
+					{
+						"name": "store_virtual_number",
+						"type": "String"
+					},
+					{
+						"name": "store_phone",
+						"type": "String"
+					},
+					{
+						"name": "business_hours_openi",
+						"type": "String"
+					},
+					{
+						"name": "business_hours_closi",
+						"type": "String"
+					},
+					{
+						"name": "store_manager_name",
+						"type": "String"
+					},
+					{
+						"name": "store_manager_mobile",
+						"type": "String"
+					},
+					{
+						"name": "payment_types",
+						"type": "String"
+					},
+					{
+						"name": "parking_options",
+						"type": "String"
+					},
+					{
+						"name": "store_opening_date",
+						"type": "String"
+					},
+					{
+						"name": "store_size",
+						"type": "String"
+					},
+					{
+						"name": "single_interface_sto",
+						"type": "String"
+					},
+					{
+						"name": "slug",
+						"type": "String"
+					},
+					{
+						"name": "lenskart_store_page_",
+						"type": "String"
+					},
+					{
+						"name": "google_maps_url",
+						"type": "String"
+					},
+					{
+						"name": "google_search_url",
+						"type": "String"
+					},
+					{
+						"name": "google_review_url",
+						"type": "String"
+					},
+					{
+						"name": "bing",
+						"type": "String"
+					},
+					{
+						"name": "foursquare_url",
+						"type": "String"
+					},
+					{
+						"name": "yalwa_url",
+						"type": "String"
+					},
+					{
+						"name": "dealsnyou_url",
+						"type": "String"
+					},
+					{
+						"name": "magicpin_url",
+						"type": "String"
+					},
+					{
+						"name": "review_short_url",
+						"type": "String"
+					},
+					{
+						"name": "map_short_url",
+						"type": "String"
+					},
+					{
+						"name": "from_the_brand",
+						"type": "String"
+					},
+					{
+						"name": "labels",
+						"type": "String"
+					},
+					{
+						"name": "busy_hours",
+						"type": "String"
+					},
+					{
+						"name": "slightly_hours",
+						"type": "String"
+					},
+					{
+						"name": "serviceOptions",
+						"type": "String"
+					},
+					{
+						"name": "store_front_image",
+						"type": "String"
+					},
+					{
+						"name": "is_union_territory",
+						"type": "String"
+					},
+					{
+						"name": "created_at",
+						"type": "String"
+					},
+					{
+						"name": "updated_at",
+						"type": "String"
+					},
+					{
+						"name": "running_status",
+						"type": "String"
+					},
+					{
+						"name": "ratingAndReviewCount",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/store_details')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage2",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "store_details.csv",
+						"folderPath": "LK_Data",
+						"container": "data"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "id",
+						"type": "String"
+					},
+					{
+						"name": "lk_store_id",
+						"type": "String"
+					},
+					{
+						"name": "alt_store_name_catch",
+						"type": "String"
+					},
+					{
+						"name": "store_type_labels",
+						"type": "String"
+					},
+					{
+						"name": "address_full",
+						"type": "String"
+					},
+					{
+						"name": "address_locality",
+						"type": "String"
+					},
+					{
+						"name": "address_city",
+						"type": "String"
+					},
+					{
+						"name": "address_state",
+						"type": "String"
+					},
+					{
+						"name": "store_email",
+						"type": "String"
+					},
+					{
+						"name": "store_virtual_number",
+						"type": "String"
+					},
+					{
+						"name": "store_phone",
+						"type": "String"
+					},
+					{
+						"name": "ratingAndReviewCount",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/transaction')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage2",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "transaction.csv",
+						"folderPath": "LK_Data",
+						"container": "data"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "order_id",
+						"type": "String"
+					},
+					{
+						"name": "transaction_id",
+						"type": "String"
+					},
+					{
+						"name": "customer_id",
+						"type": "String"
+					},
+					{
+						"name": "product_id",
+						"type": "String"
+					},
+					{
+						"name": "store_id",
+						"type": "String"
+					},
+					{
+						"name": "quantity",
+						"type": "String"
+					},
+					{
+						"name": "order_date",
+						"type": "String"
+					},
+					{
+						"name": "payment_method",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/CSV to DB')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Product",
+						"type": "Copy",
+						"dependsOn": [
+							{
+								"activity": "Store",
+								"dependencyConditions": [
+									"Completed"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "DelimitedTextSource",
+								"storeSettings": {
+									"type": "AzureBlobStorageReadSettings",
+									"recursive": true,
+									"enablePartitionDiscovery": false
+								},
+								"formatSettings": {
+									"type": "DelimitedTextReadSettings"
+								}
+							},
+							"sink": {
+								"type": "AzureSqlSink",
+								"writeBehavior": "insert",
+								"sqlWriterUseTableLock": false
+							},
+							"enableStaging": false,
+							"enableSkipIncompatibleRow": true,
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "id",
+											"type": "String"
+										},
+										"sink": {
+											"name": "id",
+											"type": "varchar",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "brand_name",
+											"type": "String"
+										},
+										"sink": {
+											"name": "brand_name",
+											"type": "varchar",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "size",
+											"type": "String"
+										},
+										"sink": {
+											"name": "size",
+											"type": "varchar",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "model_name",
+											"type": "String"
+										},
+										"sink": {
+											"name": "model_name",
+											"type": "varchar",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "prices",
+											"type": "String"
+										},
+										"sink": {
+											"name": "prices"
+										}
+									},
+									{
+										"source": {
+											"name": "wishlistCount",
+											"type": "String"
+										},
+										"sink": {
+											"name": "wishlistCount",
+											"type": "int",
+											"physicalType": "int",
+											"precision": 10
+										}
+									},
+									{
+										"source": {
+											"name": "classification",
+											"type": "String"
+										},
+										"sink": {
+											"name": "classification",
+											"type": "varchar",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "purchaseCount",
+											"type": "String"
+										},
+										"sink": {
+											"name": "purchaseCount",
+											"type": "int",
+											"physicalType": "int",
+											"precision": 10
+										}
+									},
+									{
+										"source": {
+											"name": "avgRating",
+											"type": "String"
+										},
+										"sink": {
+											"name": "avgRating",
+											"type": "float",
+											"physicalType": "float",
+											"precision": 15
+										}
+									}
+								],
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "FullProdctTable",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "ProductDB",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					},
+					{
+						"name": "Transaction",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "DelimitedTextSource",
+								"storeSettings": {
+									"type": "AzureBlobStorageReadSettings",
+									"recursive": true,
+									"enablePartitionDiscovery": false
+								},
+								"formatSettings": {
+									"type": "DelimitedTextReadSettings"
+								}
+							},
+							"sink": {
+								"type": "AzureSqlSink",
+								"writeBehavior": "insert",
+								"sqlWriterUseTableLock": false
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "order_id",
+											"type": "String"
+										},
+										"sink": {
+											"name": "order_id",
+											"type": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "transaction_id",
+											"type": "String"
+										},
+										"sink": {
+											"name": "transaction_id",
+											"type": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "customer_id",
+											"type": "String"
+										},
+										"sink": {
+											"name": "customer_id",
+											"type": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "product_id",
+											"type": "String"
+										},
+										"sink": {
+											"name": "product_id",
+											"type": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "store_id",
+											"type": "String"
+										},
+										"sink": {
+											"name": "store_id",
+											"type": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "quantity",
+											"type": "String"
+										},
+										"sink": {
+											"name": "quantity",
+											"type": "int",
+											"precision": 10
+										}
+									},
+									{
+										"source": {
+											"name": "order_date",
+											"type": "String"
+										},
+										"sink": {
+											"name": "order_date",
+											"type": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "payment_method",
+											"type": "String"
+										},
+										"sink": {
+											"name": "payment_method",
+											"type": "varchar"
+										}
+									}
+								],
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "Transaction_CSV",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "TransactionDB",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					},
+					{
+						"name": "Customer",
+						"type": "Copy",
+						"dependsOn": [
+							{
+								"activity": "Transaction",
+								"dependencyConditions": [
+									"Completed"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "DelimitedTextSource",
+								"storeSettings": {
+									"type": "AzureBlobStorageReadSettings",
+									"recursive": true,
+									"enablePartitionDiscovery": false
+								},
+								"formatSettings": {
+									"type": "DelimitedTextReadSettings"
+								}
+							},
+							"sink": {
+								"type": "AzureSqlSink",
+								"writeBehavior": "insert",
+								"sqlWriterUseTableLock": false
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "customer_id",
+											"type": "String"
+										},
+										"sink": {
+											"name": "customer_id",
+											"type": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "first name",
+											"type": "String"
+										},
+										"sink": {
+											"name": "first name",
+											"type": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "last name",
+											"type": "String"
+										},
+										"sink": {
+											"name": "last name",
+											"type": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "email",
+											"type": "String"
+										},
+										"sink": {
+											"name": "email",
+											"type": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "DOB",
+											"type": "String"
+										},
+										"sink": {
+											"name": "DOB",
+											"type": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "address",
+											"type": "String"
+										},
+										"sink": {
+											"name": "address",
+											"type": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "city",
+											"type": "String"
+										},
+										"sink": {
+											"name": "city",
+											"type": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "region",
+											"type": "String"
+										},
+										"sink": {
+											"name": "region",
+											"type": "varchar"
+										}
+									}
+								],
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "Customer_CSV",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "CustomerDB",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					},
+					{
+						"name": "Store",
+						"type": "Copy",
+						"dependsOn": [
+							{
+								"activity": "Customer",
+								"dependencyConditions": [
+									"Completed"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "DelimitedTextSource",
+								"storeSettings": {
+									"type": "AzureBlobStorageReadSettings",
+									"recursive": true,
+									"enablePartitionDiscovery": false
+								},
+								"formatSettings": {
+									"type": "DelimitedTextReadSettings"
+								}
+							},
+							"sink": {
+								"type": "AzureSqlSink",
+								"writeBehavior": "insert",
+								"sqlWriterUseTableLock": false
+							},
+							"enableStaging": false,
+							"enableSkipIncompatibleRow": true,
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "id",
+											"type": "String"
+										},
+										"sink": {
+											"name": "id",
+											"type": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "lk_store_id",
+											"type": "String"
+										},
+										"sink": {
+											"name": "lk_store_id",
+											"type": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "alt_store_name_catch",
+											"type": "String"
+										},
+										"sink": {
+											"name": "alt_store_name_catch",
+											"type": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "store_type_labels",
+											"type": "String"
+										},
+										"sink": {
+											"name": "store_type_labels",
+											"type": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "address_full",
+											"type": "String"
+										},
+										"sink": {
+											"name": "address_full",
+											"type": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "address_locality",
+											"type": "String"
+										},
+										"sink": {
+											"name": "address_locality",
+											"type": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "address_city",
+											"type": "String"
+										},
+										"sink": {
+											"name": "address_city",
+											"type": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "address_state",
+											"type": "String"
+										},
+										"sink": {
+											"name": "address_state",
+											"type": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "store_email",
+											"type": "String"
+										},
+										"sink": {
+											"name": "store_email",
+											"type": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "store_virtual_number",
+											"type": "String"
+										},
+										"sink": {
+											"name": "store_virtual_number",
+											"type": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "store_phone",
+											"type": "String"
+										},
+										"sink": {
+											"name": "store_phone",
+											"type": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "ratingAndReviewCount",
+											"type": "String"
+										},
+										"sink": {
+											"name": "ratingAndReviewCount",
+											"type": "varchar"
+										}
+									}
+								],
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "Store_CSV",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "StoreDB",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					},
+					{
+						"name": "Script1",
+						"type": "Script",
+						"dependsOn": [
+							{
+								"activity": "Product",
+								"dependencyConditions": [
+									"Completed"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"linkedServiceName": {
+							"referenceName": "AzureSqlDatabase1",
+							"type": "LinkedServiceReference"
+						},
+						"typeProperties": {
+							"scripts": [
+								{
+									"type": "Query",
+									"text": "UPDATE product\nSET \n    market_price = JSON_VALUE(REPLACE(prices, '''', '\"'), '$[0].price'),\n    lenskart_price = JSON_VALUE(REPLACE(prices, '''', '\"'), '$[1].price');"
+								}
+							],
+							"scriptBlockExecutionTimeout": "02:00:00"
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"annotations": [],
+				"lastPublishTime": "2024-05-27T16:05:13Z"
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/Transaction_CSV')]",
+				"[concat(variables('factoryId'), '/datasets/TransactionDB')]",
+				"[concat(variables('factoryId'), '/datasets/Store_CSV')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Dim Tables')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Dim Transactiions",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "AzureSqlSource",
+								"sqlReaderQuery": "select transaction_id,payment_method from transactions",
+								"queryTimeout": "02:00:00",
+								"partitionOption": "None"
+							},
+							"sink": {
+								"type": "AzureSqlSink",
+								"writeBehavior": "insert",
+								"sqlWriterUseTableLock": false
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "TransactionDB",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "DimTransaction",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					},
+					{
+						"name": "Dim Store",
+						"type": "Copy",
+						"dependsOn": [
+							{
+								"activity": "Dim Transactiions",
+								"dependencyConditions": [
+									"Completed"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "AzureSqlSource",
+								"sqlReaderQuery": "select * from store",
+								"queryTimeout": "02:00:00",
+								"partitionOption": "None"
+							},
+							"sink": {
+								"type": "AzureSqlSink",
+								"writeBehavior": "insert",
+								"sqlWriterUseTableLock": false
+							},
+							"enableStaging": false,
+							"enableSkipIncompatibleRow": true,
+							"translator": {
+								"type": "TabularTranslator",
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "StoreDB",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "Store_DB",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"annotations": [],
+				"lastPublishTime": "2024-05-27T08:49:59Z"
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/TransactionDB')]",
+				"[concat(variables('factoryId'), '/datasets/Store_DB')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Fact Table')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Fact Table",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "AzureSqlSource",
+								"sqlReaderQuery": "SELECT\n    t.order_id,\n    t.transaction_id AS transaction_id,\n    t.customer_id AS customer_id,\n    t.product_id AS product_id,\n    t.store_id AS store_id,\n    t.quantity AS quantity,\n    t.order_date AS order_date,\n    t.quantity * p.Lenskart_price AS revenue\nFROM\n    transactions t\nJOIN\n    product p ON t.product_id = p.id;",
+								"queryTimeout": "02:00:00",
+								"partitionOption": "None"
+							},
+							"sink": {
+								"type": "AzureSqlSink",
+								"writeBehavior": "insert",
+								"sqlWriterUseTableLock": false
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "TransactionDB",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "FactTableDB",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"annotations": [],
+				"lastPublishTime": "2024-05-27T08:43:08Z"
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/TransactionDB')]"
+			]
+		}
+	]
+}

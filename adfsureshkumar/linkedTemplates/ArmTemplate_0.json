@@ -1,0 +1,1388 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "adfsureshkumar"
+		},
+		"AzureBlobStorage1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage1'"
+		},
+		"AzureBlobStorage2_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage2'"
+		},
+		"AzureBlobStorageAish_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorageAish'"
+		},
+		"AzureSqlDatabase1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureSqlDatabase1'"
+		},
+		"AzureSqlDatabaseAish_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureSqlDatabaseAish'"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureBlobStorage1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobStorage",
+				"typeProperties": {
+					"connectionString": "[parameters('AzureBlobStorage1_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureBlobStorage2')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobStorage",
+				"typeProperties": {
+					"connectionString": "[parameters('AzureBlobStorage2_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureBlobStorageAish')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobStorage",
+				"typeProperties": {
+					"connectionString": "[parameters('AzureBlobStorageAish_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureSqlDatabase1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureSqlDatabase",
+				"typeProperties": {
+					"connectionString": "[parameters('AzureSqlDatabase1_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureSqlDatabaseAish')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureSqlDatabase",
+				"typeProperties": {
+					"connectionString": "[parameters('AzureSqlDatabaseAish_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureSqlTableProda')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureSqlDatabaseAish",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "id",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "brand_name",
+						"type": "varchar"
+					},
+					{
+						"name": "size",
+						"type": "varchar"
+					},
+					{
+						"name": "model_name",
+						"type": "varchar"
+					},
+					{
+						"name": "price",
+						"type": "varchar"
+					},
+					{
+						"name": "lenskart_price",
+						"type": "decimal",
+						"precision": 10,
+						"scale": 2
+					},
+					{
+						"name": "market_price",
+						"type": "decimal",
+						"precision": 10,
+						"scale": 2
+					},
+					{
+						"name": "offerName",
+						"type": "varchar"
+					},
+					{
+						"name": "classification",
+						"type": "varchar"
+					},
+					{
+						"name": "wishlistCount",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "purchaseCount",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "avgRating",
+						"type": "decimal",
+						"precision": 3,
+						"scale": 2
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "ProductA"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureSqlDatabaseAish')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/CustomerDB')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureSqlDatabase1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "customer_id",
+						"type": "varchar"
+					},
+					{
+						"name": "first name",
+						"type": "varchar"
+					},
+					{
+						"name": "last name",
+						"type": "varchar"
+					},
+					{
+						"name": "email",
+						"type": "varchar"
+					},
+					{
+						"name": "DOB",
+						"type": "varchar"
+					},
+					{
+						"name": "address",
+						"type": "varchar"
+					},
+					{
+						"name": "city",
+						"type": "varchar"
+					},
+					{
+						"name": "region",
+						"type": "varchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "customers"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureSqlDatabase1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Customer_CSV')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage2",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "customers.csv",
+						"folderPath": "LK_Data",
+						"container": "data"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "customer_id",
+						"type": "String"
+					},
+					{
+						"name": "first name",
+						"type": "String"
+					},
+					{
+						"name": "last name",
+						"type": "String"
+					},
+					{
+						"name": "email",
+						"type": "String"
+					},
+					{
+						"name": "DOB",
+						"type": "String"
+					},
+					{
+						"name": "address",
+						"type": "String"
+					},
+					{
+						"name": "city",
+						"type": "String"
+					},
+					{
+						"name": "region",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage2')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Customer_DB')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureSqlDatabase1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "customer_id",
+						"type": "varchar"
+					},
+					{
+						"name": "first name",
+						"type": "varchar"
+					},
+					{
+						"name": "last name",
+						"type": "varchar"
+					},
+					{
+						"name": "email",
+						"type": "varchar"
+					},
+					{
+						"name": "DOB",
+						"type": "varchar"
+					},
+					{
+						"name": "address",
+						"type": "varchar"
+					},
+					{
+						"name": "city",
+						"type": "varchar"
+					},
+					{
+						"name": "region",
+						"type": "varchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "customers"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureSqlDatabase1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DimTransaction')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureSqlDatabase1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "transaction_id",
+						"type": "varchar"
+					},
+					{
+						"name": "payment_method",
+						"type": "varchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "transactions_"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureSqlDatabase1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/FactTableDB')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureSqlDatabase1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "order_id",
+						"type": "varchar"
+					},
+					{
+						"name": "transaction_id",
+						"type": "varchar"
+					},
+					{
+						"name": "customer_id",
+						"type": "varchar"
+					},
+					{
+						"name": "product_id",
+						"type": "varchar"
+					},
+					{
+						"name": "store_id",
+						"type": "varchar"
+					},
+					{
+						"name": "quantity",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "order_date",
+						"type": "date"
+					},
+					{
+						"name": "revenue",
+						"type": "decimal",
+						"precision": 10,
+						"scale": 2
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "FactTable"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureSqlDatabase1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/FinalProduct')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage2",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "FinalProduct2.csv",
+						"folderPath": "LK_Data",
+						"container": "data"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "id",
+						"type": "String"
+					},
+					{
+						"name": "brand_name",
+						"type": "String"
+					},
+					{
+						"name": "size",
+						"type": "String"
+					},
+					{
+						"name": "model_name",
+						"type": "String"
+					},
+					{
+						"name": "lenskart_price",
+						"type": "String"
+					},
+					{
+						"name": "market_price",
+						"type": "String"
+					},
+					{
+						"name": "offerName",
+						"type": "String"
+					},
+					{
+						"name": "classification",
+						"type": "String"
+					},
+					{
+						"name": "wishlistCount",
+						"type": "String"
+					},
+					{
+						"name": "purchaseCount",
+						"type": "String"
+					},
+					{
+						"name": "avgRating",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage2')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/FullProdctTable')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorageAish",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "product.csv",
+						"container": "source"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "id",
+						"type": "String"
+					},
+					{
+						"name": "image_url",
+						"type": "String"
+					},
+					{
+						"name": "image_url_suffix",
+						"type": "String"
+					},
+					{
+						"name": "imageUrls",
+						"type": "String"
+					},
+					{
+						"name": "product_url",
+						"type": "String"
+					},
+					{
+						"name": "color",
+						"type": "String"
+					},
+					{
+						"name": "size",
+						"type": "String"
+					},
+					{
+						"name": "width",
+						"type": "String"
+					},
+					{
+						"name": "brand_name",
+						"type": "String"
+					},
+					{
+						"name": "brand_name_en",
+						"type": "String"
+					},
+					{
+						"name": "brand_logo",
+						"type": "String"
+					},
+					{
+						"name": "model_name",
+						"type": "String"
+					},
+					{
+						"name": "prices",
+						"type": "String"
+					},
+					{
+						"name": "is_tbyb",
+						"type": "String"
+					},
+					{
+						"name": "tags",
+						"type": "String"
+					},
+					{
+						"name": "color_options",
+						"type": "String"
+					},
+					{
+						"name": "totalColorAvailable",
+						"type": "String"
+					},
+					{
+						"name": "is_ditto",
+						"type": "String"
+					},
+					{
+						"name": "sku",
+						"type": "String"
+					},
+					{
+						"name": "hover_image_url",
+						"type": "String"
+					},
+					{
+						"name": "classification",
+						"type": "String"
+					},
+					{
+						"name": "specifications",
+						"type": "String"
+					},
+					{
+						"name": "wishlistCount",
+						"type": "String"
+					},
+					{
+						"name": "purchaseCount",
+						"type": "String"
+					},
+					{
+						"name": "avgRating",
+						"type": "String"
+					},
+					{
+						"name": "totalNoOfRatings",
+						"type": "String"
+					},
+					{
+						"name": "hashtagList",
+						"type": "String"
+					},
+					{
+						"name": "offerName",
+						"type": "String"
+					},
+					{
+						"name": "cmsLinkAndroid",
+						"type": "String"
+					},
+					{
+						"name": "cmsLinkIos",
+						"type": "String"
+					},
+					{
+						"name": "arModelAndroidUrl",
+						"type": "String"
+					},
+					{
+						"name": "arModelIOSUrl",
+						"type": "String"
+					},
+					{
+						"name": "arModelMsiteAndDesktopUrl",
+						"type": "String"
+					},
+					{
+						"name": "arModelOriginalUrl",
+						"type": "String"
+					},
+					{
+						"name": "qty",
+						"type": "String"
+					},
+					{
+						"name": "frameColorImage",
+						"type": "String"
+					},
+					{
+						"name": "subCollection",
+						"type": "String"
+					},
+					{
+						"name": "subCollectionId",
+						"type": "String"
+					},
+					{
+						"name": "relatedItems",
+						"type": "String"
+					},
+					{
+						"name": "isCygnusEnabled",
+						"type": "String"
+					},
+					{
+						"name": "isCashbackApplicable",
+						"type": "String"
+					},
+					{
+						"name": "searchProductName",
+						"type": "String"
+					},
+					{
+						"name": "prescriptionType",
+						"type": "String"
+					},
+					{
+						"name": "arProductImageUrl",
+						"type": "String"
+					},
+					{
+						"name": "occasion",
+						"type": "String"
+					},
+					{
+						"name": "suited_for",
+						"type": "String"
+					},
+					{
+						"name": "inclusiveText",
+						"type": "String"
+					},
+					{
+						"name": "clUsage",
+						"type": "String"
+					},
+					{
+						"name": "tryOnImageUrl",
+						"type": "String"
+					},
+					{
+						"name": "offer_image",
+						"type": "String"
+					},
+					{
+						"name": "isCombo",
+						"type": "String"
+					},
+					{
+						"name": "comboImageUrl",
+						"type": "String"
+					},
+					{
+						"name": "comboDescription",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorageAish')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ProductDB')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureSqlDatabase1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "id",
+						"type": "varchar"
+					},
+					{
+						"name": "brand_name",
+						"type": "varchar"
+					},
+					{
+						"name": "size",
+						"type": "varchar"
+					},
+					{
+						"name": "model_name",
+						"type": "varchar"
+					},
+					{
+						"name": "lenskart_price",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "market_price",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "classification",
+						"type": "varchar"
+					},
+					{
+						"name": "wishlistCount",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "purchaseCount",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "avgRating",
+						"type": "float",
+						"precision": 15
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "product"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureSqlDatabase1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ProductOne')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureSqlDatabase1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "id",
+						"type": "varchar"
+					},
+					{
+						"name": "brand_name",
+						"type": "varchar"
+					},
+					{
+						"name": "size",
+						"type": "varchar"
+					},
+					{
+						"name": "model_name",
+						"type": "varchar"
+					},
+					{
+						"name": "prices",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "classification",
+						"type": "varchar"
+					},
+					{
+						"name": "wishlistCount",
+						"type": "varchar"
+					},
+					{
+						"name": "purchaseCount",
+						"type": "varchar"
+					},
+					{
+						"name": "avgRating",
+						"type": "varchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "product1"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureSqlDatabase1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ProductTable')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureSqlDatabase1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "id",
+						"type": "varchar"
+					},
+					{
+						"name": "brand_name",
+						"type": "varchar"
+					},
+					{
+						"name": "size",
+						"type": "varchar"
+					},
+					{
+						"name": "model_name",
+						"type": "varchar"
+					},
+					{
+						"name": "prices",
+						"type": "varchar"
+					},
+					{
+						"name": "classification",
+						"type": "varchar"
+					},
+					{
+						"name": "wishlistCount",
+						"type": "varchar"
+					},
+					{
+						"name": "purchaseCount",
+						"type": "varchar"
+					},
+					{
+						"name": "avgRating",
+						"type": "varchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "lk_product"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureSqlDatabase1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Product_CSV')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage2",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "product.csv",
+						"folderPath": "LK_Data",
+						"container": "data"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "id",
+						"type": "String"
+					},
+					{
+						"name": "brand_name",
+						"type": "String"
+					},
+					{
+						"name": "size",
+						"type": "String"
+					},
+					{
+						"name": "model_name",
+						"type": "String"
+					},
+					{
+						"name": "lenskart_price",
+						"type": "String"
+					},
+					{
+						"name": "market_price",
+						"type": "String"
+					},
+					{
+						"name": "offerName",
+						"type": "String"
+					},
+					{
+						"name": "classification",
+						"type": "String"
+					},
+					{
+						"name": "wishlistCount",
+						"type": "String"
+					},
+					{
+						"name": "purchaseCount",
+						"type": "String"
+					},
+					{
+						"name": "avgRating",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage2')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Product_Detail')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage2",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "Product_Detail.csv",
+						"folderPath": "LK_Data",
+						"container": "data"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "id",
+						"type": "String"
+					},
+					{
+						"name": "brand_name",
+						"type": "String"
+					},
+					{
+						"name": "size",
+						"type": "String"
+					},
+					{
+						"name": "model_name",
+						"type": "String"
+					},
+					{
+						"name": "prices",
+						"type": "String"
+					},
+					{
+						"name": "classification",
+						"type": "String"
+					},
+					{
+						"name": "wishlistCount",
+						"type": "String"
+					},
+					{
+						"name": "purchaseCount",
+						"type": "String"
+					},
+					{
+						"name": "avgRating",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage2')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Product_Table')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage2",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "product.csv",
+						"folderPath": "LK_Data",
+						"container": "data"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "id",
+						"type": "String"
+					},
+					{
+						"name": "image_url",
+						"type": "String"
+					},
+					{
+						"name": "image_url_suffix",
+						"type": "String"
+					},
+					{
+						"name": "imageUrls",
+						"type": "String"
+					},
+					{
+						"name": "product_url",
+						"type": "String"
+					},
+					{
+						"name": "color",
+						"type": "String"
+					},
+					{
+						"name": "size",
+						"type": "String"
+					},
+					{
+						"name": "width",
+						"type": "String"
+					},
+					{
+						"name": "brand_name",
+						"type": "String"
+					},
+					{
+						"name": "brand_name_en",
+						"type": "String"
+					},
+					{
+						"name": "brand_logo",
+						"type": "String"
+					},
+					{
+						"name": "model_name",
+						"type": "String"
+					},
+					{
+						"name": "prices",
+						"type": "String"
+					},
+					{
+						"name": "is_tbyb",
+						"type": "String"
+					},
+					{
+						"name": "tags",
+						"type": "String"
+					},
+					{
+						"name": "color_options",
+						"type": "String"
+					},
+					{
+						"name": "totalColorAvailable",
+						"type": "String"
+					},
+					{
+						"name": "is_ditto",
+						"type": "String"
+					},
+					{
+						"name": "sku",
+						"type": "String"
+					},
+					{
+						"name": "hover_image_url",
+						"type": "String"
+					},
+					{
+						"name": "classification",
+						"type": "String"
+					},
+					{
+						"name": "specifications",
+						"type": "String"
+					},
+					{
+						"name": "wishlistCount",
+						"type": "String"
+					},
+					{
+						"name": "purchaseCount",
+						"type": "String"
+					},
+					{
+						"name": "avgRating",
+						"type": "String"
+					},
+					{
+						"name": "totalNoOfRatings",
+						"type": "String"
+					},
+					{
+						"name": "hashtagList",
+						"type": "String"
+					},
+					{
+						"name": "offerName",
+						"type": "String"
+					},
+					{
+						"name": "cmsLinkAndroid",
+						"type": "String"
+					},
+					{
+						"name": "cmsLinkIos",
+						"type": "String"
+					},
+					{
+						"name": "arModelAndroidUrl",
+						"type": "String"
+					},
+					{
+						"name": "arModelIOSUrl",
+						"type": "String"
+					},
+					{
+						"name": "arModelMsiteAndDesktopUrl",
+						"type": "String"
+					},
+					{
+						"name": "arModelOriginalUrl",
+						"type": "String"
+					},
+					{
+						"name": "qty",
+						"type": "String"
+					},
+					{
+						"name": "frameColorImage",
+						"type": "String"
+					},
+					{
+						"name": "subCollection",
+						"type": "String"
+					},
+					{
+						"name": "subCollectionId",
+						"type": "String"
+					},
+					{
+						"name": "relatedItems",
+						"type": "String"
+					},
+					{
+						"name": "isCygnusEnabled",
+						"type": "String"
+					},
+					{
+						"name": "isCashbackApplicable",
+						"type": "String"
+					},
+					{
+						"name": "searchProductName",
+						"type": "String"
+					},
+					{
+						"name": "prescriptionType",
+						"type": "String"
+					},
+					{
+						"name": "arProductImageUrl",
+						"type": "String"
+					},
+					{
+						"name": "occasion",
+						"type": "String"
+					},
+					{
+						"name": "suited_for",
+						"type": "String"
+					},
+					{
+						"name": "inclusiveText",
+						"type": "String"
+					},
+					{
+						"name": "clUsage",
+						"type": "String"
+					},
+					{
+						"name": "tryOnImageUrl",
+						"type": "String"
+					},
+					{
+						"name": "offer_image",
+						"type": "String"
+					},
+					{
+						"name": "isCombo",
+						"type": "String"
+					},
+					{
+						"name": "comboImageUrl",
+						"type": "String"
+					},
+					{
+						"name": "comboDescription",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage2')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/StoreDB')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureSqlDatabase1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "id",
+						"type": "varchar"
+					},
+					{
+						"name": "lk_store_id",
+						"type": "varchar"
+					},
+					{
+						"name": "alt_store_name_catch",
+						"type": "varchar"
+					},
+					{
+						"name": "store_type_labels",
+						"type": "varchar"
+					},
+					{
+						"name": "address_full",
+						"type": "varchar"
+					},
+					{
+						"name": "address_locality",
+						"type": "varchar"
+					},
+					{
+						"name": "address_city",
+						"type": "varchar"
+					},
+					{
+						"name": "address_state",
+						"type": "varchar"
+					},
+					{
+						"name": "store_email",
+						"type": "varchar"
+					},
+					{
+						"name": "store_virtual_number",
+						"type": "varchar"
+					},
+					{
+						"name": "store_phone",
+						"type": "varchar"
+					},
+					{
+						"name": "ratingAndReviewCount",
+						"type": "varchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "store"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureSqlDatabase1')]"
+			]
+		}
+	]
+}
