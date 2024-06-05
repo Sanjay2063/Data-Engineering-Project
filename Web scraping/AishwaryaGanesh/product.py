@@ -7,8 +7,9 @@ from selenium.webdriver.support import expected_conditions as EC
 import pandas as pd
 import logging
 import time 
+import os
 
-logging.basicConfig(filename='scrapingLog.log', level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logging.basicConfig(filename='scrapingLogProduct.log', level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 chrome_driver_path = '..\\..\\..\\chromedriver-win64\\chromedriver.exe'
 service = Service(executable_path=chrome_driver_path)
@@ -139,17 +140,18 @@ except Exception as e:
 finally:
     driver.quit()
 
-existing_excel_file = 'product_info.xlsx'
-existing_df = pd.read_excel(existing_excel_file)
+excel_file_path = 'product_info.xlsx'
 
 df_new = pd.DataFrame(data)
 
-# Append the new data to the existing DataFrame
-df_combined = pd.concat([existing_df, df_new], ignore_index=True)
+if os.path.exists(excel_file_path):
+    existing_df = pd.read_excel(excel_file_path)
+    df_combined = pd.concat([existing_df, df_new], ignore_index=True)
+else:
+    df_combined = df_new
 
-# Write the combined DataFrame to the Excel file
-with pd.ExcelWriter(existing_excel_file, mode='a', engine='openpyxl', if_sheet_exists='replace') as writer:
+with pd.ExcelWriter(excel_file_path, mode='a', engine='openpyxl', if_sheet_exists='replace') as writer:
     df_combined.to_excel(writer, index=False)
 
-print("Data added to existing Excel file:", existing_excel_file)
+print("Data added to Excel file:", excel_file_path)
 
